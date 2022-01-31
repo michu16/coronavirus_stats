@@ -68,7 +68,7 @@ const Cards = ({
               ).format(new Date(lastUpdate))}
             </Typography>
             <Typography variant="body2">
-              Liczba uzdrowionych z COVID-19
+              Liczba ozdrowieńców z COVID-19
             </Typography>
           </CardContent>
         </Grid>

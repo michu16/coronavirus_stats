@@ -61,7 +61,7 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
           },
           {
             data: dailyData.map((data) => data.recovered),
-            label: "Uzdrowieni",
+            label: "Ozdrowieńcy",
             borderColor: "green",
             backgroundColor: "rgba(0, 255, 0, 0.5)",
             fill: true,
@@ -80,7 +80,7 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
   const barChart = confirmed ? (
     <Bar
       data={{
-        labels: ["Zainfekowani", "Uzdrowieni", "Zgony", "Testy"],
+        labels: ["Zainfekowani", "Ozdrowieńcy", "Zgony", "Testy"],
         datasets: [
           {
             label: `Obecny stan w ${region}`,
