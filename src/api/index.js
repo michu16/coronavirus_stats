@@ -1,30 +1,6 @@
 import axios from "axios";
 
-// const url = "https://covid19.mathdro.id/api";
 const url = "http://localhost:8080/stats";
-
-// export const fetchData = async (region) => {
-//   let changeableUrl = url;
-
-//   if (region) {
-//     changeableUrl = `${url}/regions/${region}`;
-//   }
-//   try {
-//     const {
-//       data: { confirmed, recovered, deaths, lastUpdate },
-//     } = await axios.get(changeableUrl);
-
-//     const modifiedData = {
-//       confirmed,
-//       recovered,
-//       deaths,
-//       lastUpdate,
-//     };
-//     return modifiedData;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const fetchData = async (region) => {
   let changeableUrl = url;
@@ -34,7 +10,6 @@ export const fetchData = async (region) => {
     changeableUrl = `${url}/search?${region}`;
     try {
       const { data } = await axios.get(changeableUrl);
-      data.reverse();
       const val = region;
       const index = data.findIndex(function (item, i) {
         return item.region === val;
@@ -55,11 +30,11 @@ export const fetchData = async (region) => {
     try {
       const { data } = await axios.get(changeableUrl);
       modifiedData = {
-        confirmed: data[data.length - 1].infections,
-        deaths: data[data.length - 1].deaths,
-        recovered: data[data.length - 1].recovers,
-        tests: data[data.length - 1].tests,
-        lastUpdate: data[data.length - 1].datestamp,
+        confirmed: data[0].infections,
+        deaths: data[0].deaths,
+        recovered: data[0].recovers,
+        tests: data[0].tests,
+        lastUpdate: data[0].datestamp,
       };
 
       return modifiedData;
@@ -69,7 +44,6 @@ export const fetchData = async (region) => {
 
 export const fetchDailyData = async () => {
   try {
-    // const { data } = await axios.get(`${url}/daily`);
     const { data } = await axios.get(url);
     const modifiedData = data.map((dailyData) => ({
       confirmed: dailyData.infections,
@@ -78,7 +52,6 @@ export const fetchDailyData = async () => {
       tests: dailyData.tests,
       date: dailyData.datestamp,
     }));
-
     return modifiedData;
   } catch (error) {
     return error;

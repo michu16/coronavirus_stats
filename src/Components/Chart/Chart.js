@@ -33,6 +33,7 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
   useEffect(() => {
     const fetchMyAPI = async () => {
       const initialDailyData = await fetchDailyData();
+      initialDailyData.reverse();
       setDailyData(initialDailyData);
     };
 
@@ -61,7 +62,7 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
           },
           {
             data: dailyData.map((data) => data.recovered),
-            label: "Uzdrowieni",
+            label: "Ozdrowieńcy",
             borderColor: "green",
             backgroundColor: "rgba(0, 255, 0, 0.5)",
             fill: true,
@@ -80,7 +81,7 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
   const barChart = confirmed ? (
     <Bar
       data={{
-        labels: ["Zainfekowani", "Uzdrowieni", "Zgony", "Testy"],
+        labels: ["Zainfekowani", "Ozdrowieńcy", "Zgony", "Testy"],
         datasets: [
           {
             label: `Obecny stan w ${region}`,
@@ -95,18 +96,25 @@ const Chart = ({ data: { confirmed, recovered, deaths, tests }, region }) => {
         ],
       }}
       options={{
-        legend: { display: false },
-        title: { display: true, text: `Obecny stan w ${region}` },
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: `Obecny stan w ${region}`,
+        },
       }}
     />
   ) : null;
 
   return (
     <>
-      {console.log(region)}
+      {" "}
+      {console.log(region)}{" "}
       <div className={styles.container}>
-        {region !== "cały kraj" && region !== "" ? barChart : lineChart}
-      </div>
+        {" "}
+        {region !== "cały kraj" && region !== "" ? barChart : lineChart}{" "}
+      </div>{" "}
     </>
   );
 };
