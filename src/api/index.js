@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:8080/stats";
+const url = process.env.REACT_APP_KEY;
 
 export const fetchData = async (region) => {
   let changeableUrl = url;
