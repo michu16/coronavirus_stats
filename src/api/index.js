@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const url = process.env.REACT_APP_KEY;
-
 export const fetchData = async (region) => {
   let changeableUrl = url;
 
@@ -25,7 +24,7 @@ export const fetchData = async (region) => {
         };
       }
       return modifiedData;
-    } catch (error) {}
+    } catch (error) { }
   } else {
     try {
       const { data } = await axios.get(changeableUrl);
@@ -38,7 +37,7 @@ export const fetchData = async (region) => {
       };
 
       return modifiedData;
-    } catch (error) {}
+    } catch (error) { }
   }
 };
 
@@ -52,7 +51,7 @@ export const fetchDailyData = async () => {
       tests: dailyData.tests,
       date: dailyData.datestamp,
     }));
-    return modifiedData;
+    return
   } catch (error) {
     return error;
   }
